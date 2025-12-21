@@ -4,7 +4,7 @@ const notes = [
   { 
     icon: Heart, 
     title: "You're Amazing",
-    content: "Never forget how incredible you are. Your kindness, your strength, your beautiful soul – you make the world a better place.",
+    content: "Never forget how incredible you are. Your kindness, your strength, your beautiful soul you make the world a better place.",
     color: "text-primary"
   },
   { 

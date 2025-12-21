@@ -13,7 +13,7 @@ const PasswordModal = ({ onSuccess }: PasswordModalProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password.toLowerCase() === 'babycakes') {
+    if (password.toLowerCase() === 'buttercups') {
       onSuccess();
     } else {
       setError(true);

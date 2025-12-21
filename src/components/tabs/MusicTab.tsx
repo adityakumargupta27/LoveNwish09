@@ -2,11 +2,11 @@ import { Music, Heart, ExternalLink } from 'lucide-react';
 
 const songs = [
   { title: "Perfect", artist: "Ed Sheeran", emoji: "💕" },
-  { title: "All of Me", artist: "John Legend", emoji: "❤️" },
-  { title: "A Thousand Years", artist: "Christina Perri", emoji: "💗" },
-  { title: "Thinking Out Loud", artist: "Ed Sheeran", emoji: "💖" },
-  { title: "You Are the Reason", artist: "Calum Scott", emoji: "💝" },
-  { title: "Can't Help Falling in Love", artist: "Elvis Presley", emoji: "💘" },
+  { title: "Wildflowers", artist: "Yung Kai", emoji: "❤️" },
+  { title: "Dooron Dooron", artist: "Paresh Pahuja", emoji: "💗" },
+  { title: "The Lazy Song", artist: "Bruno Mars", emoji: "💖" },
+  { title: "Blue", artist: "Yung Kai", emoji: "💝" },
+  { title: "Belong Together", artist: "Mark Ambor", emoji: "💘" },
 ];
 
 const MusicTab = () => {
@@ -59,10 +59,15 @@ const MusicTab = () => {
         <p className="text-muted-foreground font-body text-sm mb-4">
           Every song tells our story 💕
         </p>
-        <div className="flex items-center justify-center gap-2 text-primary text-sm font-body">
+        <a
+          href="https://open.spotify.com/playlist/4CHA0svS9lsEu4zTK97IGJ?si=eL6LlNlZTb-YbsFLVMaFqg&pi=oFOBBdDfQfOJU"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 text-primary text-sm font-body"
+        >
           <ExternalLink className="w-4 h-4" />
           <span>Open in Spotify</span>
-        </div>
+        </a>
       </div>
     </div>
   );
