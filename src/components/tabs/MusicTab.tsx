@@ -1,7 +1,7 @@
 import { Music, Heart, ExternalLink } from 'lucide-react';
 
 const songs = [
-  { title: "Perfect", artist: "Ed Sheeran", emoji: "💕" },
+  { title: "her", artist: "jvke", emoji: "💕" },
   { title: "Wildflowers", artist: "Yung Kai", emoji: "❤️" },
   { title: "Dooron Dooron", artist: "Paresh Pahuja", emoji: "💗" },
   { title: "The Lazy Song", artist: "Bruno Mars", emoji: "💖" },
