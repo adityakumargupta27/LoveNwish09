@@ -52,7 +52,7 @@ const ThatPhaseSection = () => {
 
           <div className="relative z-10 pl-10 space-y-6">
             <p className="font-sketch text-lg md:text-xl text-graphite leading-relaxed">
-              You were making TikToks before it became everyone's thing.
+              You were making Likee videos before it became everyone's thing.
               <br />
               I won't lie — you're probably the reason I even opened that app.
             </p>
