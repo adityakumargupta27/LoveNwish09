@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import TypewriterText from './TypewriterText';
 import { Button } from '@/components/ui/button';
-import { Gift, Heart } from 'lucide-react';
+import { Gift } from 'lucide-react';
 
 interface CakeAnimationProps {
   onGiftClick: () => void;
@@ -14,204 +14,196 @@ const CakeAnimation = ({ onGiftClick }: CakeAnimationProps) => {
   const handleCakeClick = () => {
     if (!isAnimating) {
       setIsAnimating(true);
-      setTimeout(() => setShowMessage(true), 2000);
+      setTimeout(() => setShowMessage(true), 2500);
     }
   };
 
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 p-4 md:p-8">
-      {/* Cake SVG */}
+      {/* Sketch-style Cake SVG */}
       <div 
         className="relative cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-95"
         onClick={handleCakeClick}
       >
         <svg 
           viewBox="0 0 300 350" 
-          className="w-64 h-72 md:w-80 md:h-96"
-          aria-label="Birthday cake animation"
+          className="w-56 h-64 md:w-72 md:h-80"
+          aria-label="Birthday cake sketch animation"
         >
+          {/* Paper background */}
+          <rect x="10" y="10" width="280" height="330" rx="4" fill="hsl(var(--paper-warm))" opacity="0.5" />
+          
+          {/* Notebook lines */}
+          {[...Array(10)].map((_, i) => (
+            <line key={i} x1="20" y1={40 + i * 32} x2="280" y2={40 + i * 32} 
+                  stroke="hsl(var(--watercolor-blue))" strokeWidth="0.5" opacity="0.2" />
+          ))}
+
           {/* Cake plate */}
-          <ellipse 
-            cx="150" 
-            cy="320" 
-            rx="130" 
-            ry="20" 
-            fill="hsl(var(--pink-medium))"
-            className="drop-shadow-lg"
+          <path 
+            d={`M 40 310 Q 150 340, 260 310`}
+            fill="none" 
+            stroke="hsl(var(--pencil))"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            className={`transition-all duration-700 ${isAnimating ? 'opacity-100' : 'opacity-30'}`}
+            style={{ strokeDasharray: 400, strokeDashoffset: isAnimating ? 0 : 400, transition: 'stroke-dashoffset 1s ease-out' }}
           />
           
           {/* Bottom layer */}
-          <rect
-            x="40"
-            y={isAnimating ? "240" : "300"}
-            width="220"
-            height="80"
-            rx="10"
-            fill="hsl(var(--pink-soft))"
+          <path
+            d="M 55 230 L 55 310 Q 56 312, 58 310 L 242 310 Q 244 312, 245 310 L 245 230 Q 243 228, 240 230 L 60 230 Q 57 228, 55 230Z"
+            fill={isAnimating ? "hsl(var(--paper-warm))" : "none"}
+            stroke="hsl(var(--pencil))"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className={`transition-all duration-1000 ease-out ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-            style={{ 
-              transformOrigin: 'bottom',
-              transform: isAnimating ? 'scaleY(1)' : 'scaleY(0)'
-            }}
+            style={{ strokeDasharray: 600, strokeDashoffset: isAnimating ? 0 : 600, transition: 'stroke-dashoffset 1.2s ease-out, opacity 0.5s' }}
           />
           
-          {/* Bottom cream layer */}
-          <ellipse
-            cx="150"
-            cy={isAnimating ? "240" : "300"}
-            rx="115"
-            ry="15"
-            fill="hsl(var(--cream))"
-            className={`transition-all duration-700 delay-300 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-          />
-          
-          {/* Middle layer */}
-          <rect
-            x="55"
-            y={isAnimating ? "170" : "250"}
-            width="190"
-            height="70"
-            rx="10"
-            fill="hsl(var(--pink-medium))"
-            className={`transition-all duration-1000 delay-500 ease-out ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-          />
-          
-          {/* Middle cream layer */}
-          <ellipse
-            cx="150"
-            cy={isAnimating ? "170" : "250"}
-            rx="100"
-            ry="12"
-            fill="hsl(var(--cream))"
-            className={`transition-all duration-700 delay-700 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-          />
-          
-          {/* Top layer */}
-          <rect
-            x="70"
-            y={isAnimating ? "110" : "200"}
-            width="160"
-            height="60"
-            rx="10"
-            fill="hsl(var(--pink-deep))"
-            className={`transition-all duration-1000 delay-900 ease-out ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-          />
-          
-          {/* Top cream and decorations */}
-          <ellipse
-            cx="150"
-            cy={isAnimating ? "110" : "200"}
-            rx="85"
-            ry="10"
-            fill="hsl(var(--cream))"
-            className={`transition-all duration-700 delay-1100 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-          />
-          
-          {/* Frosting drips */}
-          {[80, 110, 140, 170, 200].map((x, i) => (
-            <ellipse
-              key={i}
-              cx={x}
-              cy={isAnimating ? "125" : "210"}
-              rx="8"
-              ry={12 + (i % 2) * 5}
-              fill="hsl(var(--cream))"
-              className={`transition-all duration-500 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-              style={{ transitionDelay: `${1200 + i * 100}ms` }}
+          {/* Crosshatch pattern */}
+          {isAnimating && [...Array(8)].map((_, i) => (
+            <line key={`hatch-${i}`}
+              x1={70 + i * 22} y1="235" x2={80 + i * 22} y2="305"
+              stroke="hsl(var(--pencil-light))" strokeWidth="0.8" opacity="0.3"
+              className="transition-opacity duration-500"
+              style={{ transitionDelay: `${800 + i * 50}ms` }}
             />
           ))}
           
+          {/* Middle layer */}
+          <path
+            d="M 68 165 L 68 230 Q 69 232, 72 230 L 228 230 Q 231 232, 232 230 L 232 165 Q 230 163, 227 165 L 73 165 Q 70 163, 68 165Z"
+            fill={isAnimating ? "hsl(var(--watercolor-amber) / 0.3)" : "none"}
+            stroke="hsl(var(--pencil))"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={`transition-all duration-1000 delay-500 ease-out ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
+            style={{ strokeDasharray: 500, strokeDashoffset: isAnimating ? 0 : 500, transition: 'stroke-dashoffset 1s ease-out 0.5s, opacity 0.5s 0.5s' }}
+          />
+
+          {/* Frosting drips */}
+          <path
+            d="M 68 165 Q 85 180, 100 165 Q 115 150, 130 170 Q 145 185, 160 165 Q 175 148, 190 168 Q 205 183, 220 165 Q 230 155, 232 165"
+            fill="none"
+            stroke="hsl(var(--sketch-gold))"
+            strokeWidth="3"
+            strokeLinecap="round"
+            className={`transition-all duration-700 delay-700 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
+            style={{ strokeDasharray: 300, strokeDashoffset: isAnimating ? 0 : 300, transition: 'stroke-dashoffset 1.2s ease-out 0.8s, opacity 0.3s 0.7s' }}
+          />
+
+          {/* Top layer */}
+          <path
+            d="M 82 110 L 82 165 Q 83 167, 86 165 L 214 165 Q 217 167, 218 165 L 218 110 Q 216 108, 213 110 L 87 110 Q 84 108, 82 110Z"
+            fill={isAnimating ? "hsl(var(--watercolor-blue) / 0.15)" : "none"}
+            stroke="hsl(var(--pencil))"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={`transition-all duration-1000 delay-900 ease-out ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
+            style={{ strokeDasharray: 450, strokeDashoffset: isAnimating ? 0 : 450, transition: 'stroke-dashoffset 1s ease-out 0.9s, opacity 0.5s 0.9s' }}
+          />
+
           {/* Candles */}
-          {[100, 130, 150, 170, 200].map((x, i) => (
+          {[110, 135, 150, 165, 190].map((x, i) => (
             <g key={i} className={`transition-all duration-500 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-               style={{ transitionDelay: `${1500 + i * 100}ms` }}>
-              {/* Candle body */}
+               style={{ transitionDelay: `${1500 + i * 120}ms` }}>
               <rect
                 x={x - 4}
-                y={isAnimating ? "70" : "160"}
+                y="68"
                 width="8"
-                height="40"
+                height="42"
                 rx="2"
-                fill={i % 2 === 0 ? "hsl(var(--teal-accent))" : "hsl(var(--accent))"}
+                fill="none"
+                stroke={i % 2 === 0 ? "hsl(var(--sketch-teal))" : "hsl(var(--sketch-orange))"}
+                strokeWidth="1.5"
               />
-              {/* Flame */}
-              <ellipse
-                cx={x}
-                cy={isAnimating ? "60" : "150"}
-                rx="8"
-                ry="12"
-                fill="#FFD700"
+              <line x1={x - 3} y1="78" x2={x + 3} y2="78" 
+                    stroke={i % 2 === 0 ? "hsl(var(--sketch-teal))" : "hsl(var(--sketch-orange))"} strokeWidth="0.8" />
+              <line x1={x - 3} y1="88" x2={x + 3} y2="88" 
+                    stroke={i % 2 === 0 ? "hsl(var(--sketch-teal))" : "hsl(var(--sketch-orange))"} strokeWidth="0.8" />
+              <path
+                d={`M ${x} 52 Q ${x + 6} 58, ${x} 68 Q ${x - 6} 58, ${x} 52Z`}
+                fill="hsl(var(--sketch-gold))"
+                opacity="0.8"
                 className={isAnimating ? "animate-flicker" : ""}
-                style={{ animationDelay: `${i * 100}ms` }}
+                style={{ animationDelay: `${i * 120}ms` }}
               />
-              <ellipse
-                cx={x}
-                cy={isAnimating ? "58" : "148"}
-                rx="4"
-                ry="7"
-                fill="#FF6B35"
+              <path
+                d={`M ${x} 56 Q ${x + 3} 60, ${x} 64 Q ${x - 3} 60, ${x} 56Z`}
+                fill="hsl(var(--sketch-orange))"
+                opacity="0.9"
                 className={isAnimating ? "animate-flicker" : ""}
-                style={{ animationDelay: `${i * 100 + 50}ms` }}
+                style={{ animationDelay: `${i * 120 + 60}ms` }}
               />
             </g>
           ))}
-          
-          {/* Cherry on top */}
-          <circle
-            cx="150"
-            cy={isAnimating ? "95" : "185"}
-            r="12"
-            fill="hsl(var(--accent))"
-            className={`transition-all duration-500 delay-[2000ms] ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
+
+          {/* Star on top */}
+          <path
+            d="M 150 30 L 155 45 L 170 45 L 158 55 L 163 70 L 150 60 L 137 70 L 142 55 L 130 45 L 145 45Z"
+            fill="hsl(var(--sketch-gold))"
+            stroke="hsl(var(--pencil))"
+            strokeWidth="1.5"
+            fillOpacity="0.6"
+            className={`transition-all duration-500 delay-[2200ms] ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
           />
-          <ellipse
-            cx="154"
-            cy={isAnimating ? "91" : "181"}
-            rx="4"
-            ry="3"
-            fill="white"
-            fillOpacity="0.5"
-            className={`transition-all duration-500 delay-[2000ms] ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-          />
+
+          {/* HBD text */}
+          <text
+            x="150" y="200"
+            textAnchor="middle"
+            fontFamily="'Caveat', cursive"
+            fontSize="22"
+            fill="hsl(var(--pencil))"
+            opacity={isAnimating ? 0.6 : 0}
+            className="transition-opacity duration-500"
+            style={{ transitionDelay: '1800ms' }}
+          >
+            HBD! 🎂
+          </text>
         </svg>
 
         {!isAnimating && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-card/90 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-lg animate-pulse-glow">
-              <p className="font-body text-foreground text-sm md:text-base">Tap to bake! 🎂</p>
+            <div className="bg-card/90 backdrop-blur-sm rounded-xl px-6 py-3 shadow-md border border-pencil/10 animate-pulse-glow">
+              <p className="font-sketch text-foreground text-base">Tap to sketch the cake! ✏️</p>
             </div>
           </div>
         )}
       </div>
 
-      {/* Message section */}
+      {/* Message */}
       <div className="text-center lg:text-left max-w-md">
         {showMessage ? (
           <div className="space-y-6">
-            <div className="min-h-[100px]">
+            <div className="min-h-[80px]">
               <TypewriterText 
-                text="Happy Birthday, My Love!"
+                text="Make a wish."
                 delay={120}
-                className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground"
+                className="font-handwritten text-5xl md:text-6xl lg:text-7xl text-charcoal"
               />
             </div>
             
-            <p className="font-body text-muted-foreground text-lg animate-fade-in" style={{ animationDelay: '3s' }}>
-              Every moment with you is a blessing. Here's to another year of love, laughter, and beautiful memories together.
+            <p className="font-sketch text-graphite text-lg animate-fade-in-up" style={{ animationDelay: '2s' }}>
+              (But not out loud. Keep it to yourself. That's how wishes work.)
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in" style={{ animationDelay: '4s' }}>
-              <Button variant="romantic" size="lg" onClick={onGiftClick}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up" style={{ animationDelay: '3s' }}>
+              <Button variant="sketch" size="lg" onClick={onGiftClick}>
                 <Gift className="w-5 h-5 mr-2" />
-                Here's a gift for you, cutie
+                Wait, there's a gift too?
               </Button>
             </div>
           </div>
         ) : (
           <div className="space-y-4 opacity-50">
-            <Heart className="w-12 h-12 text-primary mx-auto lg:mx-0 animate-pulse" />
-            <p className="font-body text-muted-foreground">
-              Click on the cake to see something magical...
+            <span className="text-4xl mx-auto lg:mx-0 block w-fit animate-wiggle">✏️</span>
+            <p className="font-sketch text-graphite text-lg">
+              Tap the canvas to sketch something...
             </p>
           </div>
         )}

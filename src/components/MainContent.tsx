@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { Heart, Mail, Music, StickyNote, Image, Cake } from 'lucide-react';
+import { Pencil, BookOpen, Palette, Image, Cake, Star } from 'lucide-react';
 import FloatingDecorations from './FloatingDecorations';
-import LoveLetterTab from './tabs/LoveLetterTab';
+import FriendLetterTab from './tabs/FriendLetterTab';
 import MusicTab from './tabs/MusicTab';
-import NotesTab from './tabs/NotesTab';
+import MemoriesTab from './tabs/MemoriesTab';
 import GalleryTab from './tabs/GalleryTab';
 import CakeTab from './tabs/CakeTab';
 
 const tabs = [
-  { id: 'letter', label: 'Love Letter', icon: Mail },
-  { id: 'cake', label: 'Cake', icon: Cake },
-  { id: 'music', label: 'Music', icon: Music },
-  { id: 'notes', label: 'Notes', icon: StickyNote },
+  { id: 'cake', label: 'Birthday Cake', icon: Cake },
+  { id: 'letter', label: 'A Letter', icon: BookOpen },
   { id: 'gallery', label: 'Gallery', icon: Image },
+  { id: 'memories', label: 'Memories', icon: Star },
+  { id: 'music', label: 'Playlist', icon: Palette },
 ];
 
 const MainContent = () => {
@@ -21,13 +21,13 @@ const MainContent = () => {
   const renderTabContent = () => {
     switch (activeTab) {
       case 'letter':
-        return <LoveLetterTab />;
+        return <FriendLetterTab />;
       case 'cake':
         return <CakeTab />;
       case 'music':
         return <MusicTab />;
-      case 'notes':
-        return <NotesTab />;
+      case 'memories':
+        return <MemoriesTab />;
       case 'gallery':
         return <GalleryTab />;
       default:
@@ -36,20 +36,20 @@ const MainContent = () => {
   };
 
   return (
-    <div className="min-h-screen romantic-gradient relative">
+    <div className="min-h-screen paper-gradient relative">
       <FloatingDecorations />
       
       {/* Header */}
       <header className="relative z-10 pt-6 pb-4 px-4 text-center">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <Heart className="w-6 h-6 text-primary" fill="currentColor" />
-          <h1 className="font-display text-3xl md:text-4xl text-foreground">
-            Happy Birthday
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <span className="text-2xl animate-wiggle inline-block">🎨</span>
+          <h1 className="font-handwritten text-4xl md:text-5xl text-charcoal">
+            Happy Birthday, Bestie!
           </h1>
-          <Heart className="w-6 h-6 text-primary" fill="currentColor" />
+          <span className="text-2xl animate-wiggle inline-block" style={{animationDelay: '0.5s'}}>✏️</span>
         </div>
-        <p className="text-muted-foreground font-body text-sm">
-          A special celebration just for you 💕
+        <p className="text-graphite font-sketch text-base">
+          A little something sketched with love, from your class 6D benchmate 📚
         </p>
       </header>
 
@@ -61,10 +61,10 @@ const MainContent = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-3 rounded-2xl font-body text-sm whitespace-nowrap transition-all duration-300 ${
+                className={`flex items-center gap-2 px-4 py-3 rounded-xl font-sketch text-base whitespace-nowrap transition-all duration-300 ${
                   activeTab === tab.id
-                    ? 'bg-primary text-primary-foreground shadow-lg scale-105'
-                    : 'bg-card/80 text-foreground hover:bg-card hover:scale-102'
+                    ? 'bg-primary text-primary-foreground shadow-md scale-105 -rotate-1'
+                    : 'bg-card/80 text-foreground hover:bg-paper-warm hover:scale-102 border border-pencil/10'
                 }`}
               >
                 <tab.icon className="w-4 h-4" />
@@ -83,9 +83,9 @@ const MainContent = () => {
       </main>
 
       {/* Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-background/80 to-transparent p-4">
-        <p className="text-center text-muted-foreground/60 font-body text-xs">
-          Made with 💕 just for you
+      <footer className="fixed bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-background/90 to-transparent p-4">
+        <p className="text-center text-graphite/50 font-sketch text-sm">
+          Sketched with ✏️ & 💛 by your benchmate
         </p>
       </footer>
     </div>

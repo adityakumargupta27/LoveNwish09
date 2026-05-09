@@ -14,8 +14,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Dancing Script', 'cursive'],
-        body: ['Montserrat', 'sans-serif'],
+        display: ['Playfair Display', 'serif'],
+        body: ['Inter', 'sans-serif'],
+        handwritten: ['Caveat', 'cursive'],
+        sketch: ['Patrick Hand', 'cursive'],
+        doodle: ['Indie Flower', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,15 +54,27 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        pink: {
-          soft: "hsl(var(--pink-soft))",
-          medium: "hsl(var(--pink-medium))",
-          deep: "hsl(var(--pink-deep))",
-          dark: "hsl(var(--pink-dark))",
+        pencil: {
+          DEFAULT: "hsl(var(--pencil))",
+          light: "hsl(var(--pencil-light))",
         },
-        rose: "hsl(var(--rose))",
-        cream: "hsl(var(--cream))",
-        teal: "hsl(var(--teal-accent))",
+        charcoal: "hsl(var(--charcoal))",
+        graphite: "hsl(var(--graphite))",
+        paper: {
+          DEFAULT: "hsl(var(--paper))",
+          warm: "hsl(var(--paper-warm))",
+          edge: "hsl(var(--paper-edge))",
+        },
+        sketch: {
+          orange: "hsl(var(--sketch-orange))",
+          teal: "hsl(var(--sketch-teal))",
+          gold: "hsl(var(--sketch-gold))",
+        },
+        watercolor: {
+          blue: "hsl(var(--watercolor-blue))",
+          sage: "hsl(var(--watercolor-sage))",
+          amber: "hsl(var(--watercolor-amber))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

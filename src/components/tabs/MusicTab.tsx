@@ -1,53 +1,57 @@
-import { Music, Heart, ExternalLink } from 'lucide-react';
+import { Music, Star, ExternalLink } from 'lucide-react';
 
 const songs = [
-  { title: "her", artist: "jvke", emoji: "💕" },
-  { title: "Wildflowers", artist: "Yung Kai", emoji: "❤️" },
-  { title: "Dooron Dooron", artist: "Paresh Pahuja", emoji: "💗" },
-  { title: "The Lazy Song", artist: "Bruno Mars", emoji: "💖" },
-  { title: "Blue", artist: "Yung Kai", emoji: "💝" },
-  { title: "Belong Together", artist: "Mark Ambor", emoji: "💘" },
+  { title: "You've Got a Friend in Me", artist: "Randy Newman", emoji: "🎨" },
+  { title: "Count on Me", artist: "Bruno Mars", emoji: "⭐" },
+  { title: "See You Again", artist: "Wiz Khalifa ft. Charlie Puth", emoji: "✨" },
+  { title: "Perfect", artist: "Ed Sheeran", emoji: "🎵" },
+  { title: "Here Comes the Sun", artist: "The Beatles", emoji: "☀️" },
+  { title: "Lean on Me", artist: "Bill Withers", emoji: "💫" },
+  { title: "Photograph", artist: "Ed Sheeran", emoji: "📸" },
+  { title: "Happy", artist: "Pharrell Williams", emoji: "🎉" },
 ];
 
 const MusicTab = () => {
   return (
     <div className="max-w-2xl mx-auto p-4 md:p-8">
       <div className="text-center mb-8">
-        <Music className="w-12 h-12 text-primary mx-auto mb-4" />
-        <h2 className="font-display text-4xl md:text-5xl text-foreground mb-2">
-          Our Playlist
+        <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-paper-warm border-2 border-pencil/10 flex items-center justify-center -rotate-3">
+          <Music className="w-8 h-8 text-primary" />
+        </div>
+        <h2 className="font-handwritten text-5xl md:text-6xl text-charcoal mb-2">
+          Our Friendship Playlist
         </h2>
-        <p className="text-muted-foreground font-body">
-          Songs that remind me of us 🎵
+        <p className="text-graphite font-sketch text-base">
+          Songs that remind me of our amazing friendship 🎵
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         {songs.map((song, index) => (
           <div
             key={index}
-            className="bg-card/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 card-shadow hover:scale-[1.02] transition-all duration-300 cursor-pointer group animate-fade-in"
-            style={{ animationDelay: `${index * 100}ms` }}
+            className="bg-card/80 backdrop-blur-sm rounded-xl p-4 md:p-5 card-shadow border border-pencil/8 hover:scale-[1.02] hover:-rotate-[0.5deg] transition-all duration-300 cursor-pointer group animate-fade-in"
+            style={{ animationDelay: `${index * 80}ms` }}
           >
             <div className="flex items-center gap-4">
-              {/* Song number/emoji */}
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              {/* Song emoji */}
+              <div className="w-12 h-12 rounded-xl bg-paper-warm border border-pencil/10 flex items-center justify-center text-2xl group-hover:scale-110 group-hover:rotate-6 transition-transform">
                 {song.emoji}
               </div>
               
               {/* Song info */}
               <div className="flex-1">
-                <h3 className="font-body font-semibold text-foreground text-lg">
+                <h3 className="font-sketch text-foreground text-lg">
                   {song.title}
                 </h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-sm font-body">
                   {song.artist}
                 </p>
               </div>
 
-              {/* Play indicator */}
+              {/* Star indicator */}
               <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                <Heart className="w-5 h-5 text-primary" fill="currentColor" />
+                <Star className="w-5 h-5 text-sketch-gold" fill="currentColor" />
               </div>
             </div>
           </div>
@@ -56,18 +60,14 @@ const MusicTab = () => {
 
       {/* Footer note */}
       <div className="mt-8 text-center">
-        <p className="text-muted-foreground font-body text-sm mb-4">
-          Every song tells our story 💕
+        <p className="text-graphite font-sketch text-base mb-4">
+          Every friendship has a soundtrack ✨
         </p>
-        <a
-          href="https://open.spotify.com/playlist/4CHA0svS9lsEu4zTK97IGJ?si=eL6LlNlZTb-YbsFLVMaFqg&pi=oFOBBdDfQfOJU"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 text-primary text-sm font-body"
-        >
-          <ExternalLink className="w-4 h-4" />
-          <span>Open in Spotify</span>
-        </a>
+        <div className="bg-paper-warm/60 rounded-xl p-4 border border-pencil/8 inline-block -rotate-1">
+          <p className="font-handwritten text-2xl text-charcoal">
+            🎧 Press play & think of the good times!
+          </p>
+        </div>
       </div>
     </div>
   );

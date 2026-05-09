@@ -1,16 +1,11 @@
 import { useState } from 'react';
-import PasswordModal from '@/components/PasswordModal';
 import WelcomeScreen from '@/components/WelcomeScreen';
-import MainContent from '@/components/MainContent';
+import ScrollExperience from '@/components/ScrollExperience';
 
-type AppState = 'password' | 'welcome' | 'main';
+type AppState = 'welcome' | 'main';
 
 const Index = () => {
-  const [appState, setAppState] = useState<AppState>('password');
-
-  const handlePasswordSuccess = () => {
-    setAppState('welcome');
-  };
+  const [appState, setAppState] = useState<AppState>('welcome');
 
   const handleWelcomeComplete = () => {
     setAppState('main');
@@ -18,16 +13,12 @@ const Index = () => {
 
   return (
     <>
-      {appState === 'password' && (
-        <PasswordModal onSuccess={handlePasswordSuccess} />
-      )}
-      
       {appState === 'welcome' && (
         <WelcomeScreen onComplete={handleWelcomeComplete} />
       )}
       
       {appState === 'main' && (
-        <MainContent />
+        <ScrollExperience />
       )}
     </>
   );
